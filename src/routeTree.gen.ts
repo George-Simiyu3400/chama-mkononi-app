@@ -12,9 +12,15 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedChamaRouteImport } from './routes/_authenticated/chama'
 import { Route as AuthenticatedChangiaRouteImport } from './routes/_authenticated/changia'
 import { Route as AuthenticatedJiungeRouteImport } from './routes/_authenticated/jiunge'
+import { Route as AuthenticatedKitabuRouteImport } from './routes/_authenticated/kitabu'
+import { Route as AuthenticatedMikopoRouteImport } from './routes/_authenticated/mikopo'
+import { Route as AuthenticatedMikutanoRouteImport } from './routes/_authenticated/mikutano'
+import { Route as AuthenticatedMsaadaRouteImport } from './routes/_authenticated/msaada'
 import { Route as AuthenticatedNyumbaniRouteImport } from './routes/_authenticated/nyumbani'
+import { Route as AuthenticatedPesaRouteImport } from './routes/_authenticated/pesa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,6 +36,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedChamaRoute = AuthenticatedChamaRouteImport.update({
+  id: '/chama',
+  path: '/chama',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedChangiaRoute = AuthenticatedChangiaRouteImport.update({
   id: '/changia',
   path: '/changia',
@@ -40,48 +51,119 @@ const AuthenticatedJiungeRoute = AuthenticatedJiungeRouteImport.update({
   path: '/jiunge',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedKitabuRoute = AuthenticatedKitabuRouteImport.update({
+  id: '/kitabu',
+  path: '/kitabu',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMikopoRoute = AuthenticatedMikopoRouteImport.update({
+  id: '/mikopo',
+  path: '/mikopo',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMikutanoRoute = AuthenticatedMikutanoRouteImport.update({
+  id: '/mikutano',
+  path: '/mikutano',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMsaadaRoute = AuthenticatedMsaadaRouteImport.update({
+  id: '/msaada',
+  path: '/msaada',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedNyumbaniRoute = AuthenticatedNyumbaniRouteImport.update({
   id: '/nyumbani',
   path: '/nyumbani',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPesaRoute = AuthenticatedPesaRouteImport.update({
+  id: '/pesa',
+  path: '/pesa',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/chama': typeof AuthenticatedChamaRoute
   '/changia': typeof AuthenticatedChangiaRoute
   '/jiunge': typeof AuthenticatedJiungeRoute
+  '/kitabu': typeof AuthenticatedKitabuRoute
+  '/mikopo': typeof AuthenticatedMikopoRoute
+  '/mikutano': typeof AuthenticatedMikutanoRoute
+  '/msaada': typeof AuthenticatedMsaadaRoute
   '/nyumbani': typeof AuthenticatedNyumbaniRoute
+  '/pesa': typeof AuthenticatedPesaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/chama': typeof AuthenticatedChamaRoute
   '/changia': typeof AuthenticatedChangiaRoute
   '/jiunge': typeof AuthenticatedJiungeRoute
+  '/kitabu': typeof AuthenticatedKitabuRoute
+  '/mikopo': typeof AuthenticatedMikopoRoute
+  '/mikutano': typeof AuthenticatedMikutanoRoute
+  '/msaada': typeof AuthenticatedMsaadaRoute
   '/nyumbani': typeof AuthenticatedNyumbaniRoute
+  '/pesa': typeof AuthenticatedPesaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/chama': typeof AuthenticatedChamaRoute
   '/_authenticated/changia': typeof AuthenticatedChangiaRoute
   '/_authenticated/jiunge': typeof AuthenticatedJiungeRoute
+  '/_authenticated/kitabu': typeof AuthenticatedKitabuRoute
+  '/_authenticated/mikopo': typeof AuthenticatedMikopoRoute
+  '/_authenticated/mikutano': typeof AuthenticatedMikutanoRoute
+  '/_authenticated/msaada': typeof AuthenticatedMsaadaRoute
   '/_authenticated/nyumbani': typeof AuthenticatedNyumbaniRoute
+  '/_authenticated/pesa': typeof AuthenticatedPesaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/changia' | '/jiunge' | '/nyumbani'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/chama'
+    | '/changia'
+    | '/jiunge'
+    | '/kitabu'
+    | '/mikopo'
+    | '/mikutano'
+    | '/msaada'
+    | '/nyumbani'
+    | '/pesa'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/changia' | '/jiunge' | '/nyumbani'
+  to:
+    | '/'
+    | '/auth'
+    | '/chama'
+    | '/changia'
+    | '/jiunge'
+    | '/kitabu'
+    | '/mikopo'
+    | '/mikutano'
+    | '/msaada'
+    | '/nyumbani'
+    | '/pesa'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/chama'
     | '/_authenticated/changia'
     | '/_authenticated/jiunge'
+    | '/_authenticated/kitabu'
+    | '/_authenticated/mikopo'
+    | '/_authenticated/mikutano'
+    | '/_authenticated/msaada'
     | '/_authenticated/nyumbani'
+    | '/_authenticated/pesa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -113,6 +195,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/chama': {
+      id: '/_authenticated/chama'
+      path: '/chama'
+      fullPath: '/chama'
+      preLoaderRoute: typeof AuthenticatedChamaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/changia': {
       id: '/_authenticated/changia'
       path: '/changia'
@@ -127,6 +216,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedJiungeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/kitabu': {
+      id: '/_authenticated/kitabu'
+      path: '/kitabu'
+      fullPath: '/kitabu'
+      preLoaderRoute: typeof AuthenticatedKitabuRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mikopo': {
+      id: '/_authenticated/mikopo'
+      path: '/mikopo'
+      fullPath: '/mikopo'
+      preLoaderRoute: typeof AuthenticatedMikopoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mikutano': {
+      id: '/_authenticated/mikutano'
+      path: '/mikutano'
+      fullPath: '/mikutano'
+      preLoaderRoute: typeof AuthenticatedMikutanoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/msaada': {
+      id: '/_authenticated/msaada'
+      path: '/msaada'
+      fullPath: '/msaada'
+      preLoaderRoute: typeof AuthenticatedMsaadaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/nyumbani': {
       id: '/_authenticated/nyumbani'
       path: '/nyumbani'
@@ -134,19 +251,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedNyumbaniRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/pesa': {
+      id: '/_authenticated/pesa'
+      path: '/pesa'
+      fullPath: '/pesa'
+      preLoaderRoute: typeof AuthenticatedPesaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedChamaRoute: typeof AuthenticatedChamaRoute
   AuthenticatedChangiaRoute: typeof AuthenticatedChangiaRoute
   AuthenticatedJiungeRoute: typeof AuthenticatedJiungeRoute
+  AuthenticatedKitabuRoute: typeof AuthenticatedKitabuRoute
+  AuthenticatedMikopoRoute: typeof AuthenticatedMikopoRoute
+  AuthenticatedMikutanoRoute: typeof AuthenticatedMikutanoRoute
+  AuthenticatedMsaadaRoute: typeof AuthenticatedMsaadaRoute
   AuthenticatedNyumbaniRoute: typeof AuthenticatedNyumbaniRoute
+  AuthenticatedPesaRoute: typeof AuthenticatedPesaRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedChamaRoute: AuthenticatedChamaRoute,
   AuthenticatedChangiaRoute: AuthenticatedChangiaRoute,
   AuthenticatedJiungeRoute: AuthenticatedJiungeRoute,
+  AuthenticatedKitabuRoute: AuthenticatedKitabuRoute,
+  AuthenticatedMikopoRoute: AuthenticatedMikopoRoute,
+  AuthenticatedMikutanoRoute: AuthenticatedMikutanoRoute,
+  AuthenticatedMsaadaRoute: AuthenticatedMsaadaRoute,
   AuthenticatedNyumbaniRoute: AuthenticatedNyumbaniRoute,
+  AuthenticatedPesaRoute: AuthenticatedPesaRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
