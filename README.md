@@ -1,252 +1,279 @@
-# Chama Yangu
+# Chama Mkononi
 
-Build a mobile-first Kenyan chama management application called ChamaMkononi.
+A mobile-first digital platform for managing informal chamas in Kenya and other communities that rely on trusted group-based savings and lending practices.
 
-The purpose of the application is to digitize traditional Kenyan chamas while keeping the experience familiar, extremely simple, affordable, trustworthy, and accessible to people who may have limited digital literacy.
+## Problem we are solving
 
-CORE DESIGN PHILOSOPHY
+Informal chamas are a powerful financial system used across Kenya, but they are often managed with paper records, cash transactions, and fragmented communication. This creates several problems:
 
-Do NOT design this like a Western fintech or corporate banking application.
+- Records are easy to lose, alter, or misplace
+- Members struggle to track contributions and loans
+- Balances are not always transparent
+- Meetings and approvals happen informally and inconsistently
+- It is hard to scale or include members who are not always physically present
+- Many users, especially in rural and low-income communities, need a simple app that feels familiar and accessible
 
-Design it around how Kenyan chamas already operate physically: contribution books, treasurers, chairpersons, secretaries, meetings, loans, fines, group projects, and member records.
+Chama Mkononi digitizes this trusted model without removing the social structure that makes chamas work. The goal is to bring transparency, accountability, and convenience to informal group savings while keeping the experience intuitive for everyday members and committee leaders.
 
-The target user includes:
+## Why this app matters
 
-- Young smartphone users
+Traditional chamas are often built on trust, relationships, and accountability within a community. The problem is not a lack of structure — it is the lack of digital tools that respect the way chamas already operate.
 
-- Rural users
+This product is designed for:
 
-- Elderly users
+- Savings groups and chamas
+- Local communities with low digital literacy
+- Members who prefer Kiswahili-first language
+- Users with low-end smartphones and limited connectivity
+- Small leadership teams like chairpersons, secretaries, and treasurers
 
-- Users with limited digital literacy
+The app is designed to be simple, reliable, and familiar rather than corporate, intimidating, or overly technical.
 
-- Users who primarily understand Kiswahili
+## Product vision
 
-- Users with limited or expensive mobile data
+Chama Mkononi helps chamas move from paper ledgers and WhatsApp coordination to a clear digital system that supports:
 
-- Users using low-end Android phones
+- regular contributions
+- transparent member records
+- group loan tracking
+- meeting management
+- financial accountability
+- trust across the group
 
-The application must feel familiar immediately.
+It preserves the way chamas already work, while making records easier to maintain and decisions easier to verify.
 
-A user should be able to understand the main screen without needing a tutorial.
+## Core features
 
-USER INTERFACE
+### 1. Contribution tracking
 
-Use:
+Members can:
 
-- Very large buttons
+- view their contribution obligations
+- check whether they have paid
+- record payments
+- review contribution history
+- see outstanding balances
 
-- Large readable typography
+This replaces manual contribution books with a digital record that is easier to inspect and maintain.
 
-- High contrast
+### 2. Chama book / ledger
 
-- Simple layouts
+The app provides a digital contribution book for authorized members to record:
 
-- Clear icons accompanied by text
+- member name
+- amount
+- date
+- contribution type
+- payment method
 
-- Minimal animations
+This enables transparency while still preserving group accountability.
 
-- Minimal screens
+### 3. Loan management
 
-- Very little scrolling
+Members can:
 
-- Familiar Kenyan terminology
+- request loans
+- see loan balances
+- track payment schedules
+- view repayment status
 
-- Kiswahili-first terminology where appropriate
+Committee members can:
 
-- Simple English as the alternative language
+- review loan requests
+- approve or reject applications
+- record repayments
+- monitor outstanding loan obligations
 
-Avoid:
+### 4. Meetings and attendance
 
-- Complex dashboards
+The secretary or chairperson can create meetings with:
 
-- Tiny text
+- date
+- time
+- location
+- agenda
 
-- Excessive menus
+Members can mark attendance with simple actions such as:
 
-- Corporate terminology
+- I am coming
+- I cannot come
 
-- Complicated charts
+This supports better planning and stronger community coordination.
+
+### 5. Transparency and accountability
 
-- Unnecessary animations
+The system gives the group visibility into:
+
+- money received
+- money spent
+- loans issued
+- repayments collected
+- current balance
 
-- Western banking-style layouts
+Each transaction can be tied to who recorded it and who approved it, improving trust and reducing disputes.
 
-- Long forms
+### 6. User roles and permissions
 
-- Technical financial terminology
+The app supports different user roles, including:
 
-The home screen should contain approximately five major actions:
+- chairperson
+- treasurer
+- secretary
+- ordinary member
 
-1. CONTRIBUTE
+Role-based access helps protect financial records while allowing members to do what they need in a simple way.
 
-2. MY CHAMA
+## User experience philosophy
 
-3. LOANS
+This product is deliberately not designed like a Western fintech app.
 
-4. MEETINGS
+Instead, it focuses on:
 
-5. HELP
+- large, readable buttons
+- simple navigation
+- high-contrast interfaces
+- familiar local language and terms
+- minimal scrolling
+- low-friction actions
+- mobile-first design for low-end devices
+- straightforward financial language
 
-Use a bottom navigation system only if it improves simplicity.
+The goal is for a member to understand the main home screen immediately without a tutorial.
 
-HOME SCREEN
+## Tech stack
 
-Show:
+This project is built with a modern frontend stack and a serverless-friendly backend setup.
 
-CHAMA NAME
+### Frontend
 
-Current chama balance
+- React 19
+- Vite
+- TypeScript
+- TanStack Router
+- TanStack Query
+- Tailwind CSS
+- Radix UI primitives
+- shadcn-style component system
 
-My contribution status
+### Backend and data
 
-My loan balance
+- Supabase for auth and database services
+- Drizzle ORM for schema and data access
+- PostgreSQL database
+- Vite + TanStack Start for app runtime and server integration
 
-Next meeting
+### Developer tooling
 
-Recent chama announcement
+- ESLint
+- Prettier
+- TypeScript
+- Drizzle Kit
 
-The information should be understandable to an elderly user at a glance.
+## Project structure
 
-USER ROLES
+```text
+.
+├── src/
+│   ├── components/
+│   ├── hooks/
+│   ├── integrations/
+│   ├── lib/
+│   ├── routes/
+│   ├── router.tsx
+│   ├── server.ts
+│   └── start.ts
+├── drizzle/
+│   ├── schema.ts
+│   └── migrations/
+├── public/
+├── supabase/
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── drizzle.config.ts
+├── components.json
+├── bunfig.toml
+├── README.md
+└── roadmap.md
+```
 
-Support:
+## Development workflow
 
-1. Chairperson
+### Prerequisites
 
-2. Treasurer
+- Node.js and npm or bun
+- A Supabase project
+- A configured PostgreSQL database for Drizzle
 
-3. Secretary
+### Install dependencies
 
-4. Ordinary Member
+```bash
+npm install
+```
 
-Each role must have appropriate permissions.
+or
 
-Implement strict role-based access control.
+```bash
+bun install
+```
 
-CONTRIBUTIONS
+### Run the app locally
 
-Allow members to:
+```bash
+npm run dev
+```
 
-- See their monthly contribution
+### Build for production
 
-- See whether they have paid
+```bash
+npm run build
+```
 
-- Make a contribution
+### Lint the codebase
 
-- View contribution history
+```bash
+npm run lint
+```
 
-- See outstanding contributions
+## Environment configuration
 
-Use simple wording such as:
+This project uses environment-backed configuration for server and database access. Make sure the required Supabase variables are configured in your local environment before running the app.
 
-"Umechanga?"
+Typical variables may include:
 
-"Umebakiza KSh 500"
+- Supabase URL
+- Supabase anonymous key
+- Supabase service role key
+- Database connection settings
 
-"Umeshachanga"
+## Why this matters in Kenya
 
-Instead of complicated financial terminology.
+Kenyan chamas are more than savings groups — they are social, economic, and community institutions. They help people build wealth collectively, support one another during hardship, and create financial habits that are grounded in trust.
 
-CHAMA BOOK
+By digitizing the process in a way that respects local practices, the app can make these groups more efficient, more transparent, and more accessible without losing the trust and familiarity that make them successful.
 
-Create a digital version of the traditional chama contribution book.
+## Roadmap
 
-Allow authorized officials to record:
+The current roadmap focuses on:
 
-Member
+- member and chama onboarding
+- contribution tracking
+- loan request and approval flows
+- meeting and attendance management
+- role-based permissions
+- financial transparency and reporting
+- mobile-first onboarding and accessibility improvements
 
-Amount
+## License
 
-Date
+This project is currently intended for internal product development and community use. Update this section if you plan to publish the repository under a specific open-source license.
 
-Contribution type
+## Summary
 
-Payment method
+Chama Mkononi is designed to digitize informal chamas in a way that is practical, familiar, and accessible. It helps communities manage savings, loans, meetings, and records using a system that supports trust, transparency, and local realities.
 
-Members should be able to see their own records.
+The app does not try to replace the culture of chamas. It gives that culture a better digital foundation.
 
-Authorized officials should be able to view group-wide contribution records.
-
-LOANS
-
-Allow members to:
-
-- Request loans
-
-- See loan balance
-
-- See repayment dates
-
-- See amount already repaid
-
-- See amount remaining
-
-Allow authorized committee members to:
-
-- Review loan applications
-
-- Approve loans
-
-- Reject loans
-
-- Record repayments
-
-Use extremely simple language.
-
-Example:
-
-"Loan you owe"
-
-"Amount to pay"
-
-"Next payment"
-
-MEETINGS
-
-Allow the secretary/chairperson to create meetings containing:
-
-Date
-
-Time
-
-Location
-
-Agenda
-
-Members can select:
-
-"I AM COMING"
-
-"I CANNOT COME"
-
-Display the next meeting prominently.
-
-Allow meeting minutes and attendance to be recorded.
-
-MONEY TRANSPARENCY
-
-Create a simple financial transparency section showing:
-
-Money received
-
-Money spent
-
-Loans given
-
-Loan repayments
-
-Current balance
-
-Every important transaction should show:
-
-Amount
-
-Date
-
-Person who recorded it
-
-Person who approved it, where applicable
 
 Create an audit trail so transactions cannot silently disappear.
 
